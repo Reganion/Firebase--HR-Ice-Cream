@@ -1,0 +1,433 @@
+       * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+           font-family: 'Inter', sans-serif;
+       }
+
+
+       body {
+           display: flex;
+           min-height: 100vh;
+           background: #fff;
+       }
+
+       .sidebar {
+           width: 250px;
+           background: #fff;
+           padding: 20px;
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
+           position: fixed;
+           height: 100vh;
+           border-right: none;
+           z-index: 1;
+           overflow-y: auto;
+           -webkit-overflow-scrolling: touch;
+       }
+
+       .logo {
+           text-align: left;
+           margin-bottom: 50px;
+           margin-top: 15px;
+       }
+
+       .logo img {
+           width: 90px;
+           height: auto;
+           object-fit: contain;
+       }
+
+       .menu-label {
+           font-size: 12px;
+           font-weight: 700;
+           color: #888;
+           text-transform: uppercase;
+           margin: 10px 0 15px 5px;
+           letter-spacing: 1px;
+       }
+
+       .menu,
+       .account-settings {
+           list-style: none;
+       }
+
+       .menu li,
+       .account-settings li {
+           margin-bottom: 15px;
+       }
+
+       .menu li a,
+       .account-settings li a {
+           text-decoration: none;
+           color: #333;
+           display: flex;
+           align-items: center;
+           gap: 12px;
+           font-size: 15px;
+           padding: 8px 10px;
+           border-radius: 6px;
+           transition: background 0.2s;
+           position: relative;
+       }
+
+       .account-settings li a.logout-link {
+           color: rgba(227, 0, 27, 1) !important;
+           font-weight: 600;
+       }
+
+       .account-settings li a.logout-link:hover {
+           background: rgba(227, 0, 27, 0.10);
+       }
+
+       .menu li a:hover,
+       .account-settings li a:hover {
+           background: #f0f0f0;
+       }
+
+       .account-settings li.active>a {
+           color: red;
+           font-weight: bold;
+
+       }
+
+       .menu li.active>a {
+           color: red;
+           font-weight: bold;
+
+       }
+
+       .menu li.open .submenu {
+           display: block;
+       }
+
+       /* Main content */
+       .main-content {
+           flex: 1;
+           display: flex;
+           flex-direction: column;
+           margin-left: 250px;
+           width: calc(100% - 250px);
+           min-width: 0; /* allow shrink so content doesn’t overflow viewport */
+       }
+
+       /* Sidebar overlay (mobile): show when sidebar is open */
+       .sidebar-overlay {
+           display: none;
+           position: fixed;
+           inset: 0;
+           background: rgba(0, 0, 0, 0.4);
+           z-index: 999;
+           opacity: 0;
+           transition: opacity 0.2s ease;
+       }
+
+       .sidebar-overlay.visible {
+           display: block;
+           opacity: 1;
+       }
+
+       /* Top Bar */
+       .top-bar {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 30px 40px;
+           background: #fff;
+           position: sticky;
+           top: 0;
+           z-index: 10;
+           gap: 15px;
+           border-bottom: none;
+
+       }
+
+
+       .right-side {
+           display: flex;
+           align-items: center;
+           gap: 15px;
+           /* small spacing */
+       }
+
+
+       /* User section with profile pic */
+       .user {
+           display: flex;
+           align-items: center;
+           flex-shrink: 0;
+           gap: 10px;
+       }
+
+       .user img {
+           width: 40px;
+           height: 40px;
+           border-radius: 50%;
+           object-fit: cover;
+           border: 2px solid #ddd;
+       }
+
+       .user-info {
+           line-height: 1.2;
+       }
+
+       .user-info strong {
+           display: block;
+           font-size: 16px;
+       }
+
+       .user-info small {
+           color: #888;
+           font-size: 13px;
+       }
+
+       .search-bar {
+           position: relative;
+           flex-shrink: 0;
+       }
+
+       .search-bar input {
+           width: 450px;
+           padding: 12px 12px 12px 40px;
+           border-radius: 50px;
+           border: #fff 1px solid;
+           font-size: 14px;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+       }
+
+       .search-bar .search-icon {
+           position: absolute;
+           top: 50%;
+           left: 12px;
+           transform: translateY(-50%);
+           font-size: 18px;
+           color: #888;
+           pointer-events: none;
+       }
+
+
+       .notification {
+           width: 40px;
+           height: 40px;
+           background: #fff;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+           border-radius: 10px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           position: relative;
+           cursor: pointer;
+           flex-shrink: 0;
+       }
+
+       .dropdown {
+           display: flex !important;
+           justify-content: space-between !important;
+           align-items: center;
+       }
+
+       .left-label {
+           display: flex;
+           align-items: center;
+           gap: 10px;
+       }
+
+       .arrow-icon {
+           transition: transform 0.3s ease;
+       }
+
+       .dropdown-parent.open .arrow-icon {
+           transform: rotate(180deg);
+       }
+
+       /* Product parent: red + bold when open (like active section) */
+       .dropdown-parent.open > a.dropdown {
+           color: #e3001b;
+           font-weight: bold;
+       }
+
+       .dropdown-parent.open > a.dropdown .left-label .material-symbols-outlined {
+           color: #e3001b;
+       }
+
+       .dropdown-parent.open .arrow-icon {
+           color: #888;
+       }
+
+       /* Dropdown icon rotation */
+       .dropdown-parent {
+           position: relative;
+           cursor: pointer;
+       }
+
+       .dropdown-parent a.dropdown {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           position: relative;
+           z-index: 1;
+       }
+
+       .dropdown-parent .material-symbols-outlined:last-child {
+           transition: transform 0.3s ease;
+       }
+
+       .dropdown-parent.open .material-symbols-outlined:last-child {
+           transform: rotate(180deg);
+       }
+
+       /* Submenu: tree layout with vertical + horizontal lines */
+       .submenu {
+           display: none;
+           list-style: none;
+           padding-left: 24px;
+           margin-top: 6px;
+           margin-bottom: 4px;
+           position: relative;
+       }
+
+       /* Vertical line from below Product down through submenu */
+       .submenu::before {
+           content: '';
+           position: absolute;
+           top: -6px;
+           left: 8px;
+           width: 2px;
+           height: calc(100% + 6px);
+           background: #d1d5db;
+           z-index: 0;
+       }
+
+       .submenu li {
+           margin-bottom: 8px;
+           padding-left: 16px;
+           position: relative;
+       }
+
+       /* Horizontal line: T-junction for items, L for last */
+       .submenu li::before {
+           content: '';
+           position: absolute;
+           top: 14px;
+           left: -16px;
+           width: 12px;
+           height: 2px;
+           background: #d1d5db;
+       }
+
+       .submenu li a {
+           position: relative;
+           z-index: 1;
+           padding-left: 0;
+       }
+
+       .submenu li.active a {
+           color: #e3001b;
+           font-weight: bold;
+       }
+
+       .settings-label {
+           font-size: 12px;
+           font-weight: bold;
+           color: #888;
+           text-transform: uppercase;
+           margin: 25px 0 10px 5px;
+           letter-spacing: 1px;
+           pointer-events: none;
+       }
+
+       /* -------------------- RESPONSIVE STYLES -------------------- */
+
+       /* For tablets and smaller screens */
+       @media (max-width: 992px) {
+           .sidebar {
+               position: fixed;
+               left: -250px;
+               height: 100vh;
+               transition: left 0.3s ease;
+               z-index: 1000;
+           }
+
+           .sidebar.active {
+               left: 0;
+           }
+
+           .main-content {
+               margin-left: 0;
+               width: 100%;
+               max-width: 100%;
+               transition: margin-left 0.3s ease;
+           }
+
+           .search-bar input {
+               width: min(200px, 45vw);
+               max-width: 100%;
+           }
+
+           .top-bar {
+               padding: 15px 20px;
+               flex-wrap: wrap;
+           }
+       }
+
+       /* For mobile screens */
+       @media (max-width: 600px) {
+           .content-area {
+               border-radius: 0 !important;
+               overflow-y: auto;
+               -webkit-overflow-scrolling: touch;
+           }
+
+           .top-bar {
+               flex-direction: row;
+               align-items: center;
+               flex-wrap: wrap;
+               gap: 10px;
+               padding: 12px 16px;
+           }
+
+           .right-side {
+               width: auto;
+               min-width: 0;
+               justify-content: flex-end;
+           }
+
+           .search-bar {
+               order: 3;
+               width: 100%;
+               flex: 1 1 100%;
+           }
+
+           .search-bar input {
+               width: 100%;
+               max-width: none;
+           }
+
+           .user-info strong {
+               font-size: 14px;
+           }
+
+           .user-info small {
+               font-size: 12px;
+           }
+
+           .menu li a,
+           .account-settings li a {
+               font-size: 14px;
+           }
+       }
+
+       /* Optional: toggle button for mobile sidebar */
+       .hamburger {
+           display: none;
+           cursor: pointer;
+           font-size: 28px;
+           margin-right: 10px;
+       }
+
+       @media (max-width: 992px) {
+           .hamburger {
+               display: block;
+           }
+       }

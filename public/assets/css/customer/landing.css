@@ -1,0 +1,218 @@
+/* Landing page – web & mobile responsive */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+/* ----- Red top section: header design + logo (curve at bottom, behind red) ----- */
+.landing-top {
+    position: relative;
+    background-color: #E3001B;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: clamp(16px, 4vw, 24px);
+}
+
+.landing-header-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 45%;
+    object-fit: contain;
+    object-position: center top;
+    pointer-events: none;
+}
+
+.landing-logo-wrap {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.landing-logo {
+    display: block;
+    height: clamp(64px, 18vw, 120px);
+    width: auto;
+    max-width: 90%;
+    margin: 0 auto clamp(8px, 2vw, 16px);
+    filter: brightness(0) invert(1);
+}
+
+.landing-brand {
+    color: #fff;
+    font-size: clamp(14px, 3.5vw, 22px);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* ----- Spacer below red (curve is in .landing-top background) ----- */
+.landing-wave {
+    flex-shrink: 0;
+    width: 100%;
+    height: clamp(48px, 10vw, 80px);
+    margin-top: calc(-1 * clamp(24px, 5vw, 40px));
+    background: transparent;
+}
+
+/* Web: hide curve/background and header image */
+@media (min-width: 769px) {
+    .landing-wave {
+        display: none;
+    }
+
+    .landing-header-img {
+        display: none;
+    }
+}
+
+/* Mobile: red section transparent; curve background fits */
+@media (max-width: 768px) {
+    .landing-top {
+        background-color: transparent;
+        background-size: 100% auto;
+        background-position: center bottom;
+    }
+}
+
+/* ----- White bottom section ----- */
+.landing-bottom {
+    flex: 1;
+    background: #fff;
+    padding: clamp(28px, 6vw, 48px) clamp(20px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.landing-headline {
+    font-size: clamp(22px, 5.5vw, 36px);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: clamp(10px, 2.5vw, 16px);
+    max-width: 480px;
+}
+
+.landing-headline-red {
+    color: #E3001B;
+}
+
+.landing-headline-black {
+    color: #1B1B1B;
+}
+
+.landing-tagline {
+    font-size: clamp(14px, 3.2vw, 18px);
+    color: #333;
+    margin-bottom: clamp(24px, 6vw, 40px);
+    max-width: 360px;
+    line-height: 1.5;
+}
+
+.landing-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(12px, 3vw, 20px);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.landing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    padding: clamp(14px, 3vw, 18px) clamp(28px, 5vw, 40px);
+    font-size: clamp(15px, 3.5vw, 18px);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    flex: 1 1 auto;
+}
+
+.landing-btn:active {
+    transform: scale(0.98);
+}
+
+.landing-btn-customer {
+    background: #E3001B;
+    color: #fff;
+    border: 2px solid #E3001B;
+}
+
+.landing-btn-customer:hover {
+    background: #c40000;
+    border-color: #c40000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(227, 0, 27, 0.35);
+}
+
+.landing-btn-driver {
+    background: #fff;
+    color: #E3001B;
+    border: 2px solid #E3001B;
+}
+
+.landing-btn-driver:hover {
+    background: #E3001B;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(227, 0, 27, 0.25);
+}
+
+/* ----- Mobile: stack buttons on very small screens ----- */
+@media (max-width: 380px) {
+    .landing-btns {
+        flex-direction: column;
+    }
+
+    .landing-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* ----- Optional: taller red section on mobile for balance ----- */
+@media (max-height: 600px) and (orientation: landscape) {
+    .landing-top {
+        min-height: 45vh;
+    }
+
+    .landing-bottom {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .landing-tagline {
+        margin-bottom: 16px;
+    }
+}

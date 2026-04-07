@@ -1,0 +1,330 @@
+/* Order detail page – single product, size, quantity, checkout */
+
+:root {
+    --order-primary: #E3001B;
+    --order-primary-hover: #c40018;
+    --order-text: #1a1a1a;
+    --order-muted: #666;
+    --order-bg: #fff;
+    --order-border: #e5e5e5;
+    --order-pill: #f0f0f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--order-bg);
+    color: var(--order-text);
+    min-height: 100vh;
+}
+
+.order-detail-page {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+.order-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--order-bg);
+    border-bottom: 1px solid var(--order-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--order-pill);
+    color: var(--order-text);
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.header-back:hover {
+    background: #e0e0e0;
+}
+
+.header-back .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.header-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--order-primary);
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.header-cart:hover {
+    background: var(--order-primary-hover);
+}
+
+.header-cart .cart-icon {
+    font-size: 22px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--order-primary);
+    background: #fff;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-detail-main {
+    padding: 20px 16px;
+}
+
+.order-product-image-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f8f8f8;
+    margin-bottom: 20px;
+}
+
+.order-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-product-info {
+    margin-bottom: 24px;
+}
+
+.order-product-name {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--order-text);
+}
+
+.order-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-category {
+    font-size: 14px;
+    color: var(--order-muted);
+}
+
+.order-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--order-text);
+}
+
+.order-rating .order-star {
+    color: #f5a623;
+    font-size: 18px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.order-label {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--order-text);
+}
+
+.order-size-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.size-btn {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--order-text);
+    background: var(--order-pill);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+}
+
+.size-btn:hover {
+    background: #e5e5e5;
+}
+
+.size-btn.active {
+    background: var(--order-primary);
+    color: #fff;
+}
+
+.order-quantity-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.order-quantity-row .order-label {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.order-quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--order-border);
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--order-pill);
+    color: var(--order-text);
+    font-size: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: #e5e5e5;
+}
+
+.qty-btn.plus {
+    background: var(--order-text);
+    color: #fff;
+}
+
+.qty-btn.plus:hover {
+    background: #333;
+}
+
+.qty-value {
+    min-width: 44px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.order-subtotal-wrap {
+    margin-left: auto;
+    text-align: right;
+}
+
+.order-subtotal-label {
+    display: block;
+    font-size: 12px;
+    color: var(--order-muted);
+    margin-bottom: 2px;
+}
+
+.order-subtotal {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--order-text);
+}
+
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    padding: 16px;
+    background: var(--order-bg);
+    border-top: 1px solid var(--order-border);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.order-checkout-btn {
+    flex: 1;
+    display: block;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--order-primary);
+    border: none;
+    border-radius: 14px;
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.order-checkout-btn:hover {
+    background: var(--order-primary-hover);
+}
+
+.order-add-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--order-bg);
+    border: 2px solid var(--order-border);
+    color: var(--order-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.order-add-btn:hover {
+    background: rgba(227, 0, 27, 0.08);
+    border-color: var(--order-primary);
+}
+
+.order-add-btn .material-symbols-outlined {
+    font-size: 28px;
+    font-variation-settings: 'FILL' 1;
+}

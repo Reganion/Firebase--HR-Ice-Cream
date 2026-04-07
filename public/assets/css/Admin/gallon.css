@@ -1,0 +1,1087 @@
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+
+    /* ========================
+           CONTENT AREA
+        ======================== */
+    .content-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        background: #f2f2f2;
+        border-top-left-radius: 30px;
+        overflow: hidden;
+
+        min-height: 0;
+        /* ✅ IMPORTANT */
+    }
+
+
+
+    /* ========================
+           PAGE HEADER
+        ======================== */
+    .gallon-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+    .gallon-header h2 {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    /* input */
+    .search-box input {
+        width: 450px;
+        padding: 15px 42px 13px 41px;
+        /* space for both icons */
+        border-radius: 10px;
+        border: 1px solid #eee;
+    }
+
+    /* 🔍 search icon (LEFT only) */
+    .search-box>span {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+    /* ❌ clear button */
+    .search-box .clear-search {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: none;
+    }
+
+    .search-box .clear-search .material-symbols-outlined {
+        font-size: 18px;
+        color: #9ca3af;
+    }
+
+    .search-box .clear-search:hover .material-symbols-outlined {
+        color: #111827;
+    }
+
+    .btn-filter,
+    .btn-add {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-filter {
+        background: #fff;
+        border: 1px solid #eee;
+    }
+
+    /* ========================
+   FILTER DROPDOWN (CLEAN STYLE)
+======================== */
+    .filter-wrapper {
+        position: relative;
+    }
+
+    .filter-dropdown {
+        position: absolute;
+        top: 110%;
+        right: 0;
+        width: 220px;
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        padding: 14px 16px;
+        display: none;
+        z-index: 999;
+    }
+
+    .filter-dropdown.show {
+        display: block;
+    }
+
+    .filter-section {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .filter-dropdown label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        color: #111827;
+        cursor: pointer;
+    }
+
+    /* clean checkbox look */
+    .filter-dropdown input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #2563eb;
+        cursor: pointer;
+    }
+
+    .filter-dropdown hr {
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        margin: 14px 0;
+    }
+
+
+    .btn-add {
+        background: #2563eb;
+        color: #fff;
+    }
+
+    /* ========================
+           TABLE CARD
+        ======================== */
+    .table-card {
+        background: #f2f2f2;
+        border-radius: 16px;
+
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+    }
+
+
+    /* ========================
+           HEADER BAR
+        ======================== */
+    .table-header {
+        display: grid;
+
+        align-items: center;
+        background: #fff;
+        padding: 14px 18px;
+        border-radius: 14px;
+        font-size: 14px;
+        color: #000;
+        margin-bottom: 12px;
+        font-weight: 400;
+    }
+
+    .table-header .col {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .table-header .material-symbols-outlined {
+        font-size: 18px;
+        color: #000;
+    }
+
+    .table-header .check {
+        gap: 10px;
+    }
+
+    .table-header .col-sortable .sort-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: inherit;
+        text-decoration: none;
+        font-weight: inherit;
+        cursor: pointer;
+        transition: color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .table-header .col-sortable .sort-link:hover {
+        color: #374151;
+    }
+
+    .table-header .col-sortable .sort-link:active {
+        opacity: 0.85;
+    }
+
+    .table-header .col-sortable .sort-arrow {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 6px;
+        color: #1f2937;
+    }
+
+    .table-header .col-sortable .sort-arrow .sort-icon {
+        width: 12px;
+        height: 14px;
+        color: #1f2937;
+        transition: color 0.15s ease;
+    }
+
+    .table-header .col-sortable .sort-link:hover .sort-icon {
+        color: #111827;
+    }
+
+    .bulk-delete-btn {
+        border: none;
+        background: transparent;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        cursor: pointer;
+        color: #6b7280;
+    }
+
+    .bulk-delete-btn:hover {
+        color: #ef4444;
+    }
+
+    /* ========================
+           TABLE BODY
+        ======================== */
+    .flavor-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 1px;
+    }
+
+    .flavor-table tbody {
+        transition: opacity 0.2s ease;
+    }
+
+    .flavor-table tbody.is-sorting {
+        opacity: 0.65;
+    }
+
+    .flavor-table tr {
+        background: #fff;
+        position: relative;
+    }
+
+    .flavor-table td {
+        padding: 16px 20px;
+        vertical-align: middle;
+    }
+
+    .flavor-table tbody tr:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        border-bottom: 1px solid #ececec;
+        pointer-events: none;
+    }
+
+
+    /* ========================
+           FLAVOR COLUMN
+        ======================== */
+    .flavor-col {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .flavor-col img {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #e5e5e5;
+    }
+
+    .flavor-col strong {
+        display: block;
+    }
+
+    .flavor-col small {
+        color: #888;
+    }
+
+    .price {
+        font-weight: 600;
+    }
+
+    /* ========================
+           STATUS
+        ======================== */
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+    }
+
+    .status .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .status.available {
+        color: #16a34a;
+    }
+
+    .status.available .dot {
+        background: #16a34a;
+    }
+
+    .status.out {
+        color: #f97316;
+    }
+
+    .status.out .dot {
+        background: #f97316;
+    }
+
+    /* ========================
+           ACTION BUTTONS
+        ======================== */
+    .action {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        display: flex;
+        gap: 6px;
+    }
+
+
+    .btn-edit {
+        background: #3b82f6;
+    }
+
+    .btn-delete {
+        background: #ef4444;
+    }
+
+    /* ========================
+   TABLE BODY CONTAINER
+======================== */
+    .table-body-container {
+        background: #fff;
+        border-radius: 16px;
+        padding: 6px 0 12px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .table-body-scroll {
+        flex: 1;
+        overflow-y: auto;
+        /* 👈 scroll here */
+    }
+
+
+    /* ========================
+   PAGINATION (BOTTOM FIXED LOOK)
+======================== */
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0 6px;
+        border-top: none;
+        margin-top: auto;
+    }
+
+    /* Prev / Next buttons */
+    .pagination-wrapper .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        background: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .pagination-wrapper .nav-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    .pagination-wrapper .nav-btn:hover:not(:disabled) {
+        background: #f3f3f3;
+    }
+
+    /* Page numbers */
+    .pagination-wrapper .page-num {
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        color: #9ca3af;
+        padding: 6px 10px;
+    }
+
+    .pagination-wrapper .page-num.active {
+        color: #000;
+        font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+
+        .search-box input {
+            width: 200px;
+        }
+
+        .table-header {
+            grid-template-columns: 60px 2fr 1fr 1fr 1.2fr;
+            font-size: 13px;
+        }
+
+        .flavor-col img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 0 10px;
+            font-size: 12px;
+        }
+
+        .pagination-wrapper {
+            gap: 10px;
+        }
+    }
+
+
+    /* ========================
+           MOBILE ONLY (SAFE)
+        ======================== */
+    @media (max-width: 600px) {
+
+        .content-area {
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        .gallon-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .header-actions {
+            flex-direction: column;
+            background: #fff;
+            padding: 12px;
+            border-radius: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .search-box {
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+        }
+
+        .filter-wrapper {
+            width: 100%;
+        }
+
+        .filter-dropdown {
+            width: 100%;
+            left: 0;
+            right: auto;
+            max-height: 280px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .btn-filter,
+        .btn-add {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* hide desktop header */
+        .table-header {
+            display: none;
+        }
+
+        .table-card {
+            background: transparent;
+            border-radius: 0;
+        }
+
+        .table-body-container {
+            background: transparent;
+            padding: 0;
+        }
+
+        .table-body-scroll {
+            overflow: visible;
+        }
+
+        /* convert table to cards */
+        .flavor-table,
+        .flavor-table tbody,
+        .flavor-table tr,
+        .flavor-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .flavor-table tr {
+            padding: 14px;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+            margin-bottom: 14px;
+        }
+
+        .flavor-table tbody tr::after {
+            display: none;
+        }
+
+        .flavor-table td {
+            padding: 8px 0;
+        }
+
+        .flavor-table td:first-child {
+            display: none;
+        }
+
+        .flavor-table td:nth-child(3),
+        .flavor-table td:nth-child(4),
+        .flavor-table td:nth-child(5) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flavor-table td:nth-child(3)::before,
+        .flavor-table td:nth-child(4)::before,
+        .flavor-table td:nth-child(5)::before {
+            color: #6b7280;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .flavor-table td:nth-child(3)::before {
+            content: "Quantity";
+        }
+
+        .flavor-table td:nth-child(4)::before {
+            content: "Add-on Price";
+        }
+
+        .flavor-table td:nth-child(5)::before {
+            content: "Status";
+        }
+
+        .action {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            width: 100%;
+            height: 42px;
+            margin-bottom: 0;
+            justify-content: center;
+            min-width: 0 !important;
+            padding: 0 12px;
+        }
+
+        .action .btn-edit {
+            grid-column: 1;
+            order: 1;
+            margin-bottom: 8px;
+        }
+
+        .action .btn-delete {
+            grid-column: 2;
+            order: 2;
+        }
+
+        .pagination-wrapper {
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 0 4px;
+        }
+
+        .pagination-wrapper .nav-btn {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        #pageNumbers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            order: 3;
+        }
+
+    }
+
+    /* ========================
+   RIGHT SIDE MODAL (DRAWER)
+======================== */
+
+    /* Overlay */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: opacity 0.3s ease;
+        z-index: 3000;
+    }
+
+    .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /* Drawer */
+    .modal-card {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        bottom: 20px;
+
+        width: 460px;
+        max-width: calc(100% - 40px);
+        max-height: calc(100vh - 40px);
+
+        background: #ffffff;
+        border-radius: 32px;
+        padding: 24px 24px 18px;
+
+        display: flex;
+        flex-direction: column;
+
+        /* 👇 START OFF-SCREEN */
+        transform: translateX(120%);
+        opacity: 0;
+
+        transition:
+            transform 0.45s cubic-bezier(.22, 1, .36, 1),
+            opacity 0.3s ease;
+
+        will-change: transform, opacity;
+    }
+
+    .modal-overlay.show .modal-card {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+
+    /* ========================
+   HEADER
+======================== */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 18px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .modal-header h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .modal-close {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #6b7280;
+    }
+
+    /* ========================
+   BODY
+======================== */
+    .modal-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 0;
+        padding-right: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        /* 👈 more breathing room */
+    }
+
+    /* Ensure inputs never overflow modal */
+    .modal-body *,
+    .modal-body *::before,
+    .modal-body *::after {
+        box-sizing: border-box;
+    }
+
+    /* ========================
+   UPLOAD SECTION
+======================== */
+    .upload-box {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 10px;
+    }
+
+    .upload-preview {
+        width: 64px;
+        height: 64px;
+        border-radius: 50px;
+        background: #f3f4f6;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #9ca3af;
+    }
+
+    .upload-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .btn-upload {
+        width: 70px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        border: none;
+
+        background: #2563eb;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+
+        cursor: pointer;
+    }
+
+    .upload-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .upload-label {
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+
+    /* ========================
+   FORMS
+======================== */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 6px;
+    }
+
+
+    /* ========================
+   FIX MODAL INPUT ALIGNMENT
+======================== */
+    .form-group input {
+        width: 100%;
+        /* ✅ THIS IS THE KEY */
+        height: 44px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: none;
+        background: #f3f4f6;
+        font-size: 14px;
+    }
+
+
+    /* normalize number input */
+    .form-group input[type="number"] {
+        appearance: textfield;
+        -moz-appearance: textfield;
+    }
+
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Gallon Size + Quantity side by side */
+    .form-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 16px;
+    }
+
+
+
+
+    /* ========================
+   FOOTER
+======================== */
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+
+        padding-top: 18px;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .modal-card form {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .btn-cancel {
+        padding: 10px 20px;
+        border-radius: 12px;
+        border: none;
+
+        background: #f3f4f6;
+        color: #374151;
+
+        cursor: pointer;
+    }
+
+    .btn-save {
+        padding: 10px 20px;
+        border-radius: 12px;
+        border: none;
+
+        background: #2563eb;
+        color: #fff;
+        font-weight: 500;
+
+        cursor: pointer;
+    }
+
+    /* ========================
+   MOBILE (FULL SCREEN)
+======================== */
+    @media (max-width: 600px) {
+        .modal-card {
+            top: 8px;
+            right: 8px;
+            left: 8px;
+            bottom: 8px;
+            width: auto;
+            max-width: none;
+            max-height: none;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .upload-box {
+            align-items: flex-start;
+        }
+
+        .upload-label {
+            font-size: 14px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            /* stack */
+            gap: 12px;
+        }
+
+        .form-group input {
+            height: 42px;
+            font-size: 13px;
+        }
+
+        .modal-footer {
+            flex-wrap: wrap;
+        }
+
+        .btn-cancel,
+        .btn-save {
+            flex: 1;
+            min-height: 42px;
+        }
+    }
+
+    /* ========================
+   DELETE CONFIRM MODAL
+======================== */
+    .delete-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 4000;
+    }
+
+    .delete-overlay.show {
+        display: flex;
+    }
+
+    .delete-modal {
+        background: #fff;
+        width: 420px;
+        max-width: calc(100% - 32px);
+        border-radius: 16px;
+        padding: 26px;
+        text-align: left;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .delete-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 10px;
+    }
+
+    .delete-title span {
+        font-weight: 700;
+    }
+
+    .delete-text {
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 24px;
+    }
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .btn-delete-cancel {
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: none;
+        background: #f3f4f6;
+        color: #374151;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .btn-delete-confirm {
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: none;
+        background: #ef4444;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .btn-delete-confirm:hover {
+        background: #dc2626;
+    }
+
+    @media (max-width: 600px) {
+        .delete-modal {
+            width: calc(100% - 24px);
+            max-width: none;
+            padding: 20px 16px;
+            border-radius: 14px;
+        }
+
+        .delete-actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-delete-cancel,
+        .btn-delete-confirm {
+            width: 100%;
+            min-height: 42px;
+        }
+    }
+
+    .table-header.gallon {
+        grid-template-columns: 6% 24% 15% 17% 18% 20%;
+    }
+
+    .flavor-table td {
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .flavor-col strong {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+
+    .status {
+        font-size: 13px;
+    }

@@ -1,0 +1,644 @@
+/* ========== Toast alerts (drop from top, slide up on exit) ========== */
+.admin-toast-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    pointer-events: none;
+}
+
+.admin-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 320px;
+    max-width: 480px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #007bff;
+    margin-bottom: 8px;
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: transform 0.35s ease-out, opacity 0.3s ease-out;
+}
+
+/* New chat message popup */
+.admin-toast.admin-toast-chat {
+    border-left-color: #00897b;
+}
+
+.admin-toast-chat .toast-icon.chat-toast-icon {
+    background: rgba(0, 137, 123, 0.12);
+    color: #00897b;
+}
+
+.admin-toast.toast-enter {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.admin-toast.toast-exit {
+    transform: translateY(-120%);
+    opacity: 0;
+}
+
+.admin-toast .toast-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(0, 123, 255, 0.12);
+    color: #007bff;
+}
+
+.admin-toast .toast-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.admin-toast .toast-message {
+    flex: 1;
+    font-size: 14px;
+    color: #1f2937;
+    line-height: 1.5;
+    word-spacing: 0.05em;
+}
+
+.admin-toast .toast-message strong {
+    font-weight: 600;
+}
+
+.admin-toast .toast-close {
+    padding: 4px;
+    color: #9ca3af;
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s;
+}
+
+.admin-toast .toast-close:hover {
+    color: #374151;
+    background: #f3f4f6;
+}
+
+/* Notification Dropdown */
+.notification {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Bell icon: outline when no unread, filled when has unread */
+.notification .notif-bell {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.notification.has-unread .notif-bell {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* Red dot with number - show when there are unread, hide when zero */
+.notif-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+    background: #dc3545;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+/* Hide badge only when count is 0 (all read) */
+.notif-badge.zero {
+    display: none;
+}
+
+.notification-dropdown {
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    bottom: 20px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    overflow: hidden;
+    display: none;
+}
+
+/* Keep header and tabs fixed */
+.notif-header,
+.notif-tabs {
+    flex-shrink: 0;
+}
+
+/* Remove the red left border for unread notifications */
+.notif-item.unread {
+    background-color: rgb(230, 242, 255);
+    transition: background 0.2s;
+}
+
+.notif-item.unread:hover {
+    background-color: rgba(230, 242, 255, 0.832);
+}
+
+
+
+/* Header */
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px 10px;
+}
+
+.notif-header .title {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.notif-header .mark-read {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #007bff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* All read: muted; has unread: blue */
+.notif-header .mark-read.read {
+    color: #9ca3af;
+    cursor: default;
+}
+
+.notif-header .mark-read:not(.read):hover {
+    color: #0056b3;
+}
+
+/* Tabs */
+.notif-tabs {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    padding: 0 16px 12px;
+}
+
+.notif-tabs span {
+    cursor: pointer;
+    padding-bottom: 4px;
+    color: #8a8a8a;
+    transition: color 0.2s, border-bottom 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notif-tabs span.active {
+    border-bottom: 2px solid red;
+    color: #000;
+}
+
+.notif-tabs .active {
+    border-bottom: 2px solid red;
+}
+
+.unread-count {
+    background: red;
+    color: #fff !important;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+
+/* Notification List */
+.notif-list {
+    flex: 1;
+    max-height: calc(100vh - 220px);
+    min-height: 100px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 4px 0 0;
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f0f0f0;
+}
+
+/* Optional scrollbar styling */
+.notif-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notif-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.notif-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.notif-list::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+.notif-empty {
+    padding: 24px 16px;
+    text-align: center;
+    color: #8a8a8a;
+    font-size: 14px;
+}
+
+
+/* MOBILE ONLY */
+@media (max-width: 600px) {
+
+    .notif-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .notif-list::-webkit-scrollbar-thumb {
+        opacity: 1;
+    }
+}
+
+
+.notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-top: 1px solid #e5e5e5;
+}
+
+.notif-item:hover {
+    background: #f8f8f8;
+}
+
+/* Icons */
+.notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notif-icon.profile {
+    background: none;
+    padding: 0;
+}
+
+.notif-icon.profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.notif-icon.delivered {
+    background: rgba(253, 230, 233);
+    color: red;
+}
+
+/* Text Styling */
+.notif-text {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.notif-text .muted {
+    color: #8a8a8a;
+}
+
+.notif-text .highlight {
+    color: #000;
+    font-weight: 500;
+}
+
+.notif-time {
+    display: block;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 0;
+}
+
+.notif-tabs span:not(.active)~.notif-list .notif-text .highlight {
+    color: #8a8a8a;
+}
+
+/* ========== Order details modal ========== */
+.order-details-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.order-details-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.order-details-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+}
+
+.order-details-panel {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.order-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.order-details-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.order-details-title .material-symbols-outlined {
+    font-size: 24px;
+    color: #c41e3a;
+}
+
+.order-details-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: #f5f5f5;
+    color: #555;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.order-details-close:hover {
+    background: #eee;
+    color: #1a1a1a;
+}
+
+.order-details-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    min-height: 120px;
+}
+
+.order-details-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    color: #666;
+    font-size: 14px;
+}
+
+.order-details-loading .material-symbols-outlined.spin {
+    animation: order-details-spin 0.8s linear infinite;
+}
+
+@keyframes order-details-spin {
+    to { transform: rotate(360deg); }
+}
+
+.order-details-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    color: #b91c1c;
+    font-size: 14px;
+}
+
+.order-details-error .material-symbols-outlined {
+    font-size: 22px;
+}
+
+.order-details-content {
+    font-size: 14px;
+    color: #374151;
+}
+
+.order-details-content .detail-section {
+    margin-bottom: 20px;
+}
+
+.order-details-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.order-details-content .detail-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+    margin-bottom: 10px;
+}
+
+.order-details-content .detail-section-title .material-symbols-outlined {
+    font-size: 16px;
+    color: #c41e3a;
+}
+
+.order-details-content .detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.order-details-content .detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.order-details-content .detail-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.order-details-content .detail-label {
+    color: #6b7280;
+    min-width: 90px;
+}
+
+.order-details-content .detail-value {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.order-details-content .detail-value.amount {
+    font-size: 16px;
+    color: #c41e3a;
+}
+
+.order-details-content .product-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+.order-details-content .product-row img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.order-details-content .product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.order-details-content .product-name {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.order-details-content .product-meta {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.order-details-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.order-details-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.order-details-btn-primary {
+    background: #c41e3a;
+    color: #fff;
+}
+
+.order-details-btn-primary:hover {
+    background: #a01930;
+    color: #fff;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 600px) {
+
+    .notification-dropdown {
+        width: 90vw;
+        right: 5px;
+        bottom: 5px;
+    }
+
+    .notif-list {
+        max-height: 55vh !important;
+        overflow-y: scroll;
+
+    }
+
+    /* Make scrollbar visible on mobile */
+    .notif-list::-webkit-scrollbar-thumb {
+        opacity: 1;
+        /* always visible */
+    }
+
+    .notif-list::-webkit-scrollbar {
+        width: 6px;
+    }
+}

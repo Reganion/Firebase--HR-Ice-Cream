@@ -1,0 +1,336 @@
+/* Flavors page – match image: back | Flavors pill | cart, search, filters, 2-col grid */
+
+:root {
+    --flavors-primary: #E3001B;
+    --flavors-primary-hover: #c40018;
+    --flavors-text: #1a1a1a;
+    --flavors-muted: #666;
+    --flavors-bg: #fff;
+    --flavors-border: #e5e5e5;
+    --flavors-pill-bg: #f0f0f0;
+    --flavors-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--flavors-bg);
+    color: var(--flavors-text);
+    min-height: 100vh;
+}
+
+.flavors-page {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: 24px;
+}
+
+/* ========== TOP BAR ========== */
+.flavors-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--flavors-bg);
+    border-bottom: 1px solid var(--flavors-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--flavors-pill-bg);
+    color: var(--flavors-text);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.header-back:hover {
+    background: #e0e0e0;
+}
+
+.header-back .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.header-title-pill {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 24px;
+    background: var(--flavors-pill-bg);
+    border-radius: 100px;
+    margin: 0 12px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--flavors-primary);
+    color: #fff;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.header-cart:hover {
+    background: var(--flavors-primary-hover);
+}
+
+.header-cart .cart-icon {
+    font-size: 22px;
+}
+
+.header-cart .cart-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: #fff;
+    color: var(--flavors-primary);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== SEARCH BAR ========== */
+.flavors-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--flavors-bg);
+    border-bottom: 1px solid var(--flavors-border);
+}
+
+.flavors-search-wrap .search-icon {
+    color: var(--flavors-muted);
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.flavors-search-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--flavors-border);
+    border-radius: 100px;
+    padding: 12px 16px 12px 12px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    background: var(--flavors-bg);
+    transition: border-color 0.2s;
+}
+
+.flavors-search-input::placeholder {
+    color: var(--flavors-muted);
+}
+
+.flavors-search-input:focus {
+    border-color: var(--flavors-primary);
+}
+
+/* ========== FILTER PILLS ========== */
+.flavors-filters-wrap {
+    padding: 12px 16px;
+    background: var(--flavors-bg);
+    border-bottom: 1px solid var(--flavors-border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.flavors-filters-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+.flavors-filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: min-content;
+    padding: 2px 0;
+}
+
+.filter-pill {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--flavors-text);
+    background: var(--flavors-pill-bg);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+}
+
+.filter-pill:hover {
+    background: #e5e5e5;
+}
+
+.filter-pill.active {
+    background: var(--flavors-primary);
+    color: #fff;
+}
+
+/* ========== FLAVOR GRID ========== */
+.flavors-main {
+    padding: 16px;
+}
+
+.flavors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.flavor-card-image-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.flavor-card-menu {
+    background: var(--flavors-bg);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--flavors-border);
+    box-shadow: var(--flavors-card-shadow);
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+
+.flavor-card-menu:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.flavor-card-image-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.flavor-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flavor-card-name {
+    margin: 0;
+    padding: 12px 12px 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--flavors-text);
+    line-height: 1.3;
+}
+
+.flavor-card-price {
+    margin: 0;
+    padding: 0 12px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--flavors-text);
+}
+
+.flavor-add-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--flavors-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.flavor-add-btn:hover {
+    background: var(--flavors-primary-hover);
+    transform: scale(1.05);
+}
+
+.flavor-add-btn .material-symbols-outlined {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1;
+}
+
+/* ========== WEB ========== */
+@media (min-width: 769px) {
+    .flavors-page {
+        max-width: 900px;
+        padding: 0 24px 32px;
+    }
+
+    .flavors-header {
+        padding: 16px 24px;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .header-title-pill {
+        max-width: 240px;
+        font-size: 17px;
+    }
+
+    .flavors-search-wrap {
+        padding: 14px 24px;
+    }
+
+    .flavors-filters-wrap {
+        padding: 14px 24px;
+    }
+
+    .flavors-main {
+        padding: 24px;
+    }
+
+    .flavors-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .flavor-card-name {
+        font-size: 16px;
+    }
+
+    .flavor-card-price {
+        font-size: 16px;
+    }
+}

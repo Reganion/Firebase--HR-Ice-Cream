@@ -1,0 +1,247 @@
+     * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: "Inter", sans-serif !important;
+     }
+
+     body {
+         background: #ffffff;
+         height: 100vh;
+         display: flex;
+     }
+
+     /* LEFT IMAGE PANEL */
+     .left {
+         width: 50%;
+         height: calc(100vh - 40px);
+         border-radius: 15px;
+         overflow: hidden;
+         margin: 20px 0 20px 20px;
+         position: relative;
+     }
+
+     .left img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         border-radius: 15px;
+     }
+
+     .logo-left {
+         position: absolute;
+         top: 20px;
+         left: 20px;
+         z-index: 10;
+     }
+
+     .logo-left img {
+         width: 100px;
+         height: auto;
+     }
+
+     .right {
+         width: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         padding: 20px;
+     }
+
+     .container {
+         max-width: 450px;
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+     }
+
+     .title {
+         font-size: 26px;
+         font-weight: 700;
+         margin-bottom: 20px;
+         color: #111;
+     }
+
+     label {
+         font-size: 14px;
+         font-weight: 500;
+         margin-bottom: 5px;
+         display: block;
+         color: #333;
+     }
+
+     input {
+         width: 100%;
+         padding: 14px;
+         margin-bottom: 15px;
+         border: 1px solid #e0e0e0;
+         border-radius: 10px;
+         font-size: 14px;
+     }
+
+     .input-group {
+         margin-bottom: 15px;
+     }
+
+     .input-group input {
+         margin-bottom: 0;
+     }
+
+     .input-group.has-error input {
+         border-color: #d90000;
+     }
+
+     .input-group .error-text {
+         display: block;
+         color: #d90000;
+         font-size: 12px;
+         margin-top: 4px;
+     }
+
+     .row .input-group {
+         margin-bottom: 15px;
+     }
+
+     .row {
+         display: flex;
+         gap: 10px;
+     }
+
+     .signup-btn {
+         width: 100%;
+         padding: 14px;
+         background: #d90000;
+         color: #fff;
+         border: none;
+         border-radius: 10px;
+         font-size: 16px;
+         font-weight: 600;
+         margin-top: 10px;
+         cursor: pointer;
+     }
+
+     .divider {
+         display: flex;
+         align-items: center;
+         color: #666;
+         margin: 20px 0;
+     }
+
+     .divider::before,
+     .divider::after {
+         content: "";
+         flex: 1;
+         height: 1px;
+         background: #ccc;
+     }
+
+     .divider span {
+         margin: 0 10px;
+         font-size: 13px;
+     }
+
+     .google-btn {
+         width: 100%;
+         padding: 12px;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+         background: #fff;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         gap: 10px;
+         cursor: pointer;
+         font-size: 15px;
+         font-weight: 500;
+         color: #000;
+         margin-bottom: 20px;
+     }
+
+     .google-btn img {
+         width: 22px;
+     }
+
+     .login {
+         text-align: center;
+         font-size: 14px;
+     }
+
+     .login a {
+         color: #d90000;
+         font-weight: 600;
+         text-decoration: none;
+     }
+
+     @media (max-width: 1200px) {
+         .left {
+             width: 45%;
+             margin-left: 15px;
+             margin-right: 10px;
+         }
+     }
+
+     .logo {
+         display: none;
+     }
+
+     @media (max-width: 900px) {
+         body {
+             flex-direction: column;
+             justify-content: space-between;
+             height: 100vh;
+             padding: 20px 10px;
+         }
+
+         .left {
+             display: none;
+         }
+
+         .right {
+             width: 100%;
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between;
+             height: 100%;
+             align-items: center;
+         }
+
+         .container {
+             max-width: 100%;
+             width: 100%;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             flex-grow: 1;
+         }
+
+         .logo {
+             display: block;
+             width: 100%;
+             text-align: center;
+             margin-bottom: 40px;
+         }
+
+         .logo img {
+             width: 150px;
+             height: auto;
+             display: block;
+             margin: 0 auto;
+         }
+
+         .login {
+             margin-top: auto;
+             width: 100%;
+         }
+
+         label {
+             display: none;
+         }
+
+         .title {
+             font-size: 14px;
+             font-weight: 500;
+             margin-bottom: 20px;
+         }
+
+     }
